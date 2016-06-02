@@ -65,6 +65,11 @@ void CreateFunction(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 
+//6_object_wrap
+
+
+
+
 
 void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
     exports->Set(Nan::New("hello").ToLocalChecked(),

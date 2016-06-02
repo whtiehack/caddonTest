@@ -24,3 +24,16 @@ addon.callback(function(arg){
 console.log('addon objectfactory:',addon.objectfactory('test obj new'));
 
 console.log('callback end');
+
+
+var fun = addon.createFunction();
+console.log("xxfun cfun:",fun);
+
+console.log(fun());
+
+
+console.log('all end');
+
+
+var path = require('path');
+
