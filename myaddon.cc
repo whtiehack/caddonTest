@@ -1,5 +1,5 @@
 #include <nan.h>
-
+#include "myobject.h"
 
 //1_hello_world
 void Method(const Nan::FunctionCallbackInfo<v8::Value>& info) {
@@ -65,9 +65,15 @@ void CreateFunction(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 
-//6_object_wrap
 
 
+//6_object_wrap     MyObject::Init(exports);
+//MyObject::Init(exports);
+
+//7_factory_wrap
+void ObjCreateObject(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    info.GetReturnValue().Set(MyObject::NewInstance(info[0]));
+}
 
 
 
@@ -85,6 +91,10 @@ void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
                 Nan::New<v8::FunctionTemplate>(CreateObject)->GetFunction());
     
     Nan::SetMethod(exports, "createFunction", CreateFunction);
+    
+    MyObject::Init(exports);
+    
+    Nan::SetMethod(exports, "ObjCreateObject", ObjCreateObject);
 }
 
 

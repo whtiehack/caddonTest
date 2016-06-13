@@ -32,8 +32,17 @@ console.log("xxfun cfun:",fun);
 console.log(fun());
 
 
+var myobj = addon.MyObject();
+console.log('myobject',myobj.value(),myobj.plusOne(),myobj.plusOne(),myobj.multiply(10).value());
 console.log('all end');
 
 
-var path = require('path');
+var createFactory = addon.ObjCreateObject;
+
+myobj = createFactory(10);
+console.log(myobj,myobj.plusOne());
+
+console.log('factory end');
+
+
 
