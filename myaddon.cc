@@ -75,6 +75,13 @@ void ObjCreateObject(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     info.GetReturnValue().Set(MyObject::NewInstance(info[0]));
 }
 
+//8_passing_wrapped
+void ObjAdd(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    MyObject* obj1 = Nan::ObjectWrap::Unwrap<MyObject>(info[0]->ToObject());
+    MyObject* obj2 = Nan::ObjectWrap::Unwrap<MyObject>(info[1]->ToObject());
+    double sum = obj1->Val() + obj2->Val();
+    info.GetReturnValue().Set(Nan::New(sum));
+}
 
 
 void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
@@ -94,7 +101,10 @@ void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
     
     MyObject::Init(exports);
     
+    
     Nan::SetMethod(exports, "ObjCreateObject", ObjCreateObject);
+    exports->Set(Nan::New("ObjAdd").ToLocalChecked(),
+                 Nan::New<v8::FunctionTemplate>(ObjAdd)->GetFunction());
 }
 
 

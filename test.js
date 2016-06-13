@@ -44,5 +44,9 @@ console.log(myobj,myobj.plusOne());
 
 console.log('factory end');
 
+console.log('8_passing_wrapped');
 
-
+var obj1 = createFactory(10);
+var obj2 = createFactory(20);
+var result = addon.ObjAdd(obj1, obj2);
+console.log('result obj add result:',result);

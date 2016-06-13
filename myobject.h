@@ -16,6 +16,7 @@ public:
     static void Init(v8::Local<v8::Object> exports);
     static v8::Local<v8::Object> NewInstance(v8::Local<v8::Value> arg);
     
+    double Val() const { return value_; }
 private:
     explicit MyObject(double value = 0);
     ~MyObject();
