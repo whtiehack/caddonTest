@@ -50,3 +50,11 @@ var obj1 = createFactory(10);
 var obj2 = createFactory(20);
 var result = addon.ObjAdd(obj1, obj2);
 console.log('result obj add result:',result);
+
+
+
+console.log('async.....');
+addon.calculateAsync(5000000,function(err,ret){
+                     console.log('aaaa err:',err,'ret:',ret);
+})
+console.log('async ... end');

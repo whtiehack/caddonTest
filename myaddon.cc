@@ -1,6 +1,6 @@
 #include <nan.h>
 #include "myobject.h"
-
+#include "async.hpp"  // NOLINT(build/include)
 //1_hello_world
 void Method(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     info.GetReturnValue().Set(Nan::New("world111").ToLocalChecked());
@@ -100,6 +100,9 @@ void Init(v8::Local<v8::Object> exports, v8::Local<v8::Object> module) {
     Nan::SetMethod(exports, "createFunction", CreateFunction);
     
     MyObject::Init(exports);
+    
+    exports->Set(Nan::New("calculateAsync").ToLocalChecked(),
+                 Nan::New<v8::FunctionTemplate>(CalculateAsync)->GetFunction());
     
     
     Nan::SetMethod(exports, "ObjCreateObject", ObjCreateObject);
